@@ -16,7 +16,7 @@ module ThreeScale
           before_filter :find_wiki_page, :only => [:show, :edit, :update, :destroy]
           before_filter :find_wiki_pages, :only => :index
 
-          rescue_from ActiveRecord::RecordNotFound, :with => :not_found
+          rescue_from ActiveRecord::RecordNotFound, :with => :wiki_page_not_found
         
           require File.dirname(__FILE__) + '/../../../app/helpers/three_scale/wiki/pages_helper'
           helper ThreeScale::Wiki::PagesHelper
@@ -122,7 +122,7 @@ module ThreeScale
 
         # This is called when wiki page is not found. By default it display a page explaining
         # that the wiki page does not exist yet and link to create it.
-        def not_found
+        def wiki_page_not_found
           render :action => 'not_found', :status => :not_found
         end
       end
