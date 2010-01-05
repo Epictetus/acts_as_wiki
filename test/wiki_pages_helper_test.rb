@@ -28,6 +28,17 @@ class WikiPagesHelperTest < ActionView::TestCase
     assert_equal '', wiki_text(nil)
   end
 
+  # TODO: make this test work (work around the undefined method `render` error)
+  # test 'wiki_pages_widget renders link to wiki pages' do
+  #   wiki_page_one = WikiPage.create!(:title => 'foo')
+  #   wiki_page_two = WikiPage.create!(:title => 'bar')
+
+  #   output = wiki_pages_widget([wiki_page_one, wiki_page_two])
+
+  #   assert_match wiki_page_path(wiki_page_one), output
+  #   assert_match wiki_page_path(wiki_page_two), output
+  # end
+
   private
 
   # Stub named routes, because they don't work in helper tests for some reason.

@@ -28,7 +28,7 @@ module ThreeScale
 
       # Render widget with list of wiki pages.
       def wiki_pages_widget(wiki_pages)
-        render :partial => '3scale/wiki/pages/widget', :locals => {:wiki_pages => wiki_pages}
+        render :partial => 'three_scale/wiki/pages/widget', :locals => {:wiki_pages => wiki_pages}
       end
 
       private 
