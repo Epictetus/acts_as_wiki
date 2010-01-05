@@ -79,6 +79,11 @@ class WikiPagesControllerTest < ActionController::TestCase
     assert_template '3scale/wiki/pages/not_found'    
   end
 
+  test 'on GET to :show if page does not exists in bogus format' do
+    get :show, :id => 'foo', :format => 'bar'
+    assert_response :not_found
+  end
+
   test 'on GET to :edit' do
     setup_page
     get :edit, :id => @page.to_param

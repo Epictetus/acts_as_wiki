@@ -82,8 +82,8 @@ module ThreeScale
           @wiki_page_class ||= self.class.wiki_options[:model_class].constantize
         end
 
-        # Override this to provide own collection of wiki pages. This by default equals to
-        # +wiki_page_class+ (therefore - all wiki pages).
+        # Override this to provide own collection of wiki pages. By default this returns
+        # all wiki pages.
         #
         # == Example
         #
@@ -91,7 +91,7 @@ module ThreeScale
         #     current_user.wiki_pages
         #   end
         def wiki_pages
-          wiki_page_class
+          wiki_page_class.scoped({})
         end
 
         # Ovverride this if you need custom find logic for single wiki page.
