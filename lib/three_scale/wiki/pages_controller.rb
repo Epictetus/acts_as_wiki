@@ -15,8 +15,6 @@ module ThreeScale
 
           before_filter :find_wiki_page, :only => [:show, :edit, :update, :destroy]
           before_filter :find_wiki_pages, :only => :index
-
-          rescue_from ActiveRecord::RecordNotFound, :with => :wiki_page_not_found
         
           require File.dirname(__FILE__) + '/../../../app/helpers/three_scale/wiki/pages_helper'
           helper ThreeScale::Wiki::PagesHelper
@@ -113,6 +111,8 @@ module ThreeScale
         #
         def find_wiki_page
           @wiki_page = wiki_pages.find(params[:id])
+        rescue ActiveRecord::RecordNotFound
+          wiki_page_not_found
         end
 
         # Find all wiki pages. This is by default used only for index action.
