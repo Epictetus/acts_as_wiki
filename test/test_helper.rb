@@ -1,13 +1,20 @@
 require 'rubygems'
 require 'test/unit'
+
 gem 'activesupport','=2.3.5'
 require 'active_support/test_case'
+
 gem 'activerecord','=2.3.5'
 require 'active_record'
+
 gem 'actionpack','=2.3.5'
 require 'action_controller'
 require 'action_controller/test_process'
 require 'action_view/test_case'
+
+gem 'formtastic'
+require 'formtastic'
+
 require 'redcloth'
 
 require File.dirname(__FILE__) + '/../init'
@@ -57,6 +64,8 @@ class WikiPage < ActiveRecord::Base
 end
 
 class WikiPagesController < ActionController::Base
+  helper Formtastic::SemanticFormHelper
+
   acts_as_wiki_pages_controller
 end
 

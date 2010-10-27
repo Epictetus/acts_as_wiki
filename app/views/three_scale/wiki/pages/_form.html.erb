@@ -1,2 +1,35 @@
-<%= render :partial => 'title_field', :locals => {:form => form} %>
-<%= render :partial => 'content_field', :locals => {:form => form} %>
+<% semantic_form_for @wiki_page do |form| %>
+  <% form.inputs do %>
+    <%= form.input :title %>
+    <%= form.input :content, :as => :text, :input_html => {:rows => 40} %>
+  <% end %>
+
+  <% form.buttons do %>
+    <%= form.commit_button %>
+    <li class="link"><%= link_to 'Preview', preview_new_wiki_page_path, :class => 'wiki_preview_trigger' %></li>
+    <li class="link"><%= link_to 'Index', wiki_pages_path %></li>
+  <% end %>
+<% end %>
+
+<div class="help wiki_formatting_help">
+  <p><%= link_to 'Textile', 'http://redcloth.org/hobix.com/textile/quick.html' %> is supported. You can also use raw HTML.</p>
+
+  <p>Links to other wiki pages:
+  <code>[[wiki-page-id]]</code> or
+  <code>[[Wiki page title]]</code> or
+  <code>"Text of link":[[wiki-page-id]]</code> or
+  <code>"Text of link":[[Wiki page title]]</code>.</p>
+
+  <p>Format source code samples like this:</p>
+
+  <div class="usercontent">
+    <pre><code class="html">&lt;pre&gt;&lt;code class="javascript"&gt;
+  function helloWorld() {
+    alert("Hello world");
+  }
+&lt;/code&gt;&lt;/pre&gt;</code></pre>
+  </div>
+
+  <p>Specify programming language the sample is in with <code>class="language"</code> on
+  <code>code</code> element.</p>
+</div>
